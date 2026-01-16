@@ -1,17 +1,8 @@
-# Backend secrets
 backend/.env
-
-# Python cache
 backend/__pycache__/
-*.pyc
-
-# Node modules
 frontend/node_modules/
-
-# IDE files
 .vscode/
 .idea/
-
-# OS files
 .DS_Store
 Thumbs.db
+
