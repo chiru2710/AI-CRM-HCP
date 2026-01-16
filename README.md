@@ -1,3 +1,128 @@
+# 🚀 AI-First CRM HCP Module
+
+## 📌 Objective
+
+This project is an **AI-First Customer Relationship Management (CRM) module** designed for Life Sciences field representatives to log and manage their interactions with Healthcare Professionals (HCPs).
+
+The system supports:
+- **Structured Form-based logging**, and  
+- **Conversational AI-based logging using LangGraph and Groq LLM**,  
+
+making data entry faster, smarter, and more user-friendly for field teams.
+
+---
+
+## 🛠 Tech Stack
+
+### **Frontend**
+- React  
+- Redux (State Management)  
+- Axios (API Communication)  
+- Google Font: Inter  
+
+### **Backend**
+- FastAPI (Python)  
+- SQLAlchemy ORM  
+- Uvicorn Server  
+
+### **AI & Automation**
+- **LangGraph** (AI Agent Framework)  
+- **Groq LLM – gemma2-9b-it**
+
+### **Database**
+- **MySQL** (`ai_crm_db`)
+
+---
+
+## ✨ Features
+
+### 🔹 1) Dual Mode Interaction Logging
+
+#### 📌 Form Mode (Structured Logging)
+Field representatives can log interactions using a structured form that includes:
+- HCP Name  
+- Interaction Type (Visit, Call, Email, etc.)  
+- Purpose of Visit  
+- Samples Given (Yes/No)  
+- Follow-up Date  
+
+All form data is directly validated and stored in the MySQL database.
+
+#### 📌 AI Chat Mode (Conversational Logging)
+Users can describe their interaction in natural language, for example:
+
+> “I met Dr. Anitha today and provided samples.”
+
+The AI agent processes this text, extracts key details, summarizes it, and stores structured data in the database.
+
+---
+
+### 🔹 2) AI-Powered Processing with LangGraph
+
+A **LangGraph AI agent** acts as the intelligence layer that:
+- Understands user intent from chat input  
+- Calls appropriate tools dynamically  
+- Coordinates between LLM and database operations  
+
+---
+
+### 🔹 3) LLM-Based Summarization (Groq)
+
+Uses **Groq LLM (gemma2-9b-it)** to:
+- Summarize long chat descriptions  
+- Extract meaningful insights  
+- Generate concise interaction summaries  
+
+**Example:**
+
+Input:
+> “Met the doctor regarding clinical trial updates, discussed dosage, side effects, and market trends.”
+
+AI Summary:
+> “Discussion focused on clinical trial progress, dosage, and market trends.”
+
+---
+
+### 🔹 4) Automated Entity Extraction
+
+From chat text, the system automatically extracts:
+- HCP Name (e.g., Dr. Anitha)  
+- Whether samples were given  
+- Purpose of interaction  
+- Type of interaction (Visit/Call/Chat)  
+
+---
+
+### 🔹 5) 5 LangGraph AI Tools (Core Requirement)
+
+The LangGraph agent uses at least five tools:
+
+1. **Log Interaction Tool**  
+   - Saves structured interaction data into MySQL  
+   - Works for both form and chat inputs  
+
+2. **Edit Interaction Tool**  
+   - Allows modification of previously logged interactions  
+
+3. **Fetch Interaction History Tool**  
+   - Retrieves past interactions of a specific doctor  
+
+4. **Summarization Tool (LLM-Based)**  
+   - Uses Groq to generate concise summaries  
+
+5. **Entity Extraction Tool**  
+   - Identifies key details such as:
+     - Doctor name  
+     - Samples given  
+     - Visit type  
+
+---
+
+### 🔹 6) Centralized Interaction Database (MySQL)
+
+All interactions (Form + Chat) are stored in a single table:
+
+
 
 Each record contains:
 - Interaction ID (UUID)  
@@ -88,19 +213,7 @@ cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 
-Backend will run at:
-👉 http://127.0.0.1:8000
-
-### 🔹 frontend Setup
+### 🔹 Frontend Setup
 cd frontend
 npm install
 npm start
-
-Frontend will run at:
-👉 http://localhost:3000
-
-
-Developed By:
-JANGILI Ch M Srinivasa Vara Prasad
-B.Tech CSE
-CGPA: 8.6
